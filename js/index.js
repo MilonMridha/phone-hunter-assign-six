@@ -12,3 +12,12 @@ const loadPhoneData = () => {
       .then((data) => displayPhones(data.data.slice(0, 20)));
   }
 };
+// Display All Phones in UI-------------------->
+const displayPhones = (phones) => {
+  const mainDiv = document.getElementById("main");
+  phones.forEach((phone) => {
+    const div = document.createElement("div");
+    div.classList.add("col-lg-4");
+    div.classList.add("mt-4");
+  });
+};
