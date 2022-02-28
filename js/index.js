@@ -19,5 +19,16 @@ const displayPhones = (phones) => {
     const div = document.createElement("div");
     div.classList.add("col-lg-4");
     div.classList.add("mt-4");
+    div.innerHTML = `
+      <div class="card" style="width: 18rem;">
+           <img src="${phone.image} " class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Name : ${phone.phone_name} </h5>
+        <h6 class="card-title">Brand : ${phone.brand} </h6>
+        <a href="#" class="btn btn-dark">See Details</a>
+      </div>
+    </div>
+      `;
+    mainDiv.appendChild(div);
   });
 };
