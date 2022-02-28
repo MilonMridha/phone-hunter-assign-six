@@ -15,11 +15,25 @@
     />
   </head>
   <!-- Body Start-------------------------- -->
-  <body>
-    <div>
-      <h1 class="text-center">Find Phone</h1>
+  <body class="bg-dark">
+    <div class="container">
+      <h1 class="text-center text-warning mt-5">Find Phone</h1>
+      <div class="d-flex mx-auto w-50 mt-3">
+        <input
+          id="input-field"
+          class="form-control me-2"
+          type="search"
+          placeholder="Search Phone By Name"
+          aria-label="Search"
+        />
+        <!-- Button for Search -->
+        <button onclick="loadPhoneData()" class="btn btn-success" type="submit">
+          Search
+        </button>
+      </div>
     </div>
-
+    <!-- Parents Div ----------- -->
+    <div id="main"></div>
     <script src="js/index.js"></script>
   </body>
 </html>
