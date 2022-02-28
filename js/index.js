@@ -25,10 +25,17 @@ const displayPhones = (phones) => {
       <div class="card-body">
         <h5 class="card-title">Name : ${phone.phone_name} </h5>
         <h6 class="card-title">Brand : ${phone.brand} </h6>
-        <a href="#" class="btn btn-dark">See Details</a>
+        <a href="#" class="btn btn-dark" onclick="loadSingleData('${phone.slug}')">See Details</a>
       </div>
     </div>
       `;
     mainDiv.appendChild(div);
   });
+};
+// Load & Fetch See Details phone Data-------------->
+const loadSingleData = (phoneId) => {
+  const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => console.log(data.data));
 };
