@@ -13,6 +13,12 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <!-- Vanilla Css Style for Toggle Spinner  -->
+    <style>
+      #spinner {
+        display: none;
+      }
+    </style>
   </head>
   <!-- Body Start-------------------------- -->
   <body class="bg-danger">
@@ -32,6 +38,27 @@
         </button>
       </div>
     </div>
+    <!-- Add Toggle Spinner--------- -->
+    <div id="spinner" class="container mt-3">
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-warning" type="button" disabled>
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Loading...</span>
+        </button>
+        <button class="btn btn-warning" type="button" disabled>
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Loading...
+        </button>
+      </div>
+    </div>
     <!-- See Details Div -->
     <div
       id="see-details"
@@ -40,7 +67,7 @@
     <!-- Parents Div ----------- -->
     <div
       id="main"
-      class="row container mt-4 ms-3 d-flex justify-content-center"
+      class="row container mt-4 ms-3 d-flex justify-content-center col-sm-12"
     ></div>
     <script src="js/index.js"></script>
   </body>

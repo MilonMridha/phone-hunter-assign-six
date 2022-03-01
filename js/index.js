@@ -1,21 +1,31 @@
 // Load & Fetch All Phones Data------------------>
 const loadPhoneData = () => {
   const inputField = document.getElementById("input-field");
+  const mainDiv2 = document.getElementById("see-details");
+  mainDiv2.innerHTML = "";
   const inputText = inputField.value;
   inputField.value = "";
   if (inputText == "" || !isNaN(inputText)) {
     alert("Enter Phone Name");
   } else {
+    toggleSpinner("block");
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputText}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => displayPhones(data));
   }
 };
+
+// Add Toggle Spinner--------------->
+const toggleSpinner = (displayStyle) => {
+  document.getElementById("spinner").style.display = displayStyle;
+};
+
 // Display All Phones in UI-------------------->
 const displayPhones = (phones) => {
   if (phones.status === false) {
     alert("Phone Result Not Found");
+    toggleSpinner("none");
   } else {
     const allPhones = phones.data.slice(0, 20);
     const mainDiv = document.getElementById("main");
@@ -23,6 +33,7 @@ const displayPhones = (phones) => {
     allPhones.forEach((phone) => {
       const div = document.createElement("div");
       div.classList.add("col-lg-4");
+      div.classList.add("col-12");
       div.classList.add("mt-4");
       div.innerHTML = `
             <div class="card" style="width: 18rem;">
@@ -35,11 +46,13 @@ const displayPhones = (phones) => {
           </div>
             `;
       mainDiv.appendChild(div);
+      toggleSpinner("none");
     });
   }
 };
 // Load & Fetch See Details phone Data-------------->
 const loadSingleData = (phoneId) => {
+  toggleSpinner("block");
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
     .then((res) => res.json())
@@ -57,28 +70,60 @@ const displaySinglePhone = (singlePhone) => {
       <div class="card-body">
         <h5 class="card-title">Name : ${singlePhone.name} </h5>
         <h6 class="card-title">Release Date : ${
-          singlePhone.releaseDate ? singlePhone.releaseDate : "Not Found"
+          singlePhone.releaseDate ? singlePhone.releaseDate : "Comming Soon"
         } </h6>
         <h6 class="card-title">Brand : ${singlePhone.brand} </h6>
         <p><h6>Sensors:</h6>
-        ${singlePhone.mainFeatures.sensors[0]}<br>
-        ${singlePhone.mainFeatures.sensors[1]}<br>
-        ${singlePhone.mainFeatures.sensors[2]}<br>
-        ${singlePhone.mainFeatures.sensors[3]}<br>
-        ${singlePhone.mainFeatures.sensors[4]}<br>
-        ${singlePhone.mainFeatures.sensors[5]}<br>
-        ${singlePhone.mainFeatures.sensors[6]}<br><br>
+       
+        ${
+          singlePhone.mainFeatures.sensors[0]
+            ? singlePhone.mainFeatures.sensors[0]
+            : "Not Found"
+        }
+        <br>
+        ${
+          singlePhone.mainFeatures.sensors[1]
+            ? singlePhone.mainFeatures.sensors[1]
+            : "Not Found"
+        }
+        <br>
+        ${
+          singlePhone.mainFeatures.sensors[2]
+            ? singlePhone.mainFeatures.sensors[2]
+            : "Not Found"
+        }<br>
+        ${
+          singlePhone.mainFeatures.sensors[3]
+            ? singlePhone.mainFeatures.sensors[3]
+            : "Not Found"
+        }<br>
+        ${
+          singlePhone.mainFeatures.sensors[4]
+            ? singlePhone.mainFeatures.sensors[4]
+            : "Not Found"
+        }<br>
+        ${
+          singlePhone.mainFeatures.sensors[5]
+            ? singlePhone.mainFeatures.sensors[5]
+            : "Not Found"
+        }<br>
+        ${
+          singlePhone.mainFeatures.sensors[6]
+            ? singlePhone.mainFeatures.sensors[6]
+            : "Not Found"
+        }<br><br>
         
        <h6>Others:</h6>
-        Bluetooth: ${singlePhone.others.Bluetooth} 
-        GPS: ${singlePhone.others.GPS}  
-        NFC: ${singlePhone.others.NFC}<br>
-        Radio: ${singlePhone.others.Radio}<br>
-        USB: ${singlePhone.others.USB}<br>
-        WLAN: ${singlePhone.others.WLAN}
+       <li>Bluetooth: ${singlePhone.others.Bluetooth} </li> 
+       <li>GPS: ${singlePhone.others.GPS}  </li> 
+       <li>NFC: ${singlePhone.others.NFC}</li> 
+       <li>Radio: ${singlePhone.others.Radio}</li>
+       <li>USB: ${singlePhone.others.USB}</li> 
+       <li>WLAN: ${singlePhone.others.WLAN}</li> 
         </p>
       </div>
     </div>
   `;
   mainDiv2.appendChild(singleDiv);
+  toggleSpinner("none");
 };
