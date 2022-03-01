@@ -47,6 +47,7 @@ const loadSingleData = (phoneId) => {
 };
 // Display Single phone Details in UI----------------->
 const displaySinglePhone = (singlePhone) => {
+  console.log(singlePhone);
   const mainDiv2 = document.getElementById("see-details");
   mainDiv2.innerHTML = "";
   const singleDiv = document.createElement("div");
@@ -55,9 +56,27 @@ const displaySinglePhone = (singlePhone) => {
            <img src="${singlePhone.image} " class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Name : ${singlePhone.name} </h5>
-        <h6 class="card-title">Release : ${singlePhone.releaseDate} </h6>
+        <h6 class="card-title">Release Date : ${
+          singlePhone.releaseDate ? singlePhone.releaseDate : "Not Found"
+        } </h6>
         <h6 class="card-title">Brand : ${singlePhone.brand} </h6>
-        <a href="#" class="btn btn-dark" onclick="loadSingleData('${singlePhone.slug}')">See Details</a>
+        <p><h6>Sensors:</h6>
+        ${singlePhone.mainFeatures.sensors[0]}<br>
+        ${singlePhone.mainFeatures.sensors[1]}<br>
+        ${singlePhone.mainFeatures.sensors[2]}<br>
+        ${singlePhone.mainFeatures.sensors[3]}<br>
+        ${singlePhone.mainFeatures.sensors[4]}<br>
+        ${singlePhone.mainFeatures.sensors[5]}<br>
+        ${singlePhone.mainFeatures.sensors[6]}<br><br>
+        
+       <h6>Others:</h6>
+        Bluetooth: ${singlePhone.others.Bluetooth} 
+        GPS: ${singlePhone.others.GPS}  
+        NFC: ${singlePhone.others.NFC}<br>
+        Radio: ${singlePhone.others.Radio}<br>
+        USB: ${singlePhone.others.USB}<br>
+        WLAN: ${singlePhone.others.WLAN}
+        </p>
       </div>
     </div>
   `;
